@@ -1,0 +1,50 @@
+package kimyongtae.hr.web;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import kimyongtae.hr.domain.Employee;
+import kimyongtae.hr.service.EmployeeService;
+
+@RestController
+@RequestMapping("/emp")
+public class EmployeeController {
+	@Autowired private EmployeeService empService;
+	
+	@GetMapping("/list")
+	public List<Employee> getEmployees() {
+		return empService.getEmployees();
+	}
+	
+	@GetMapping("/get/{empId}")
+	public Employee getEmployee(@PathVariable int empId) {
+		return empService.getEmployee(empId);
+	}
+	
+	@PostMapping("/add")
+	public int addEmployee(String empName, 
+			@DateTimeFormat(pattern="yyyy-MM-dd") LocalDate hireDate) {
+		return empService.addEmployee(empName, hireDate);
+	}
+	
+	@PutMapping("/fix")
+	public int fixEmployee(@RequestBody Employee emp) {
+		return empService.fixEmployee(emp);
+	}
+	
+	@DeleteMapping("/del/{empId}")
+	public int delEmployee(@PathVariable int empId) {
+		return empService.delEmployee(empId);
+	}
+}
