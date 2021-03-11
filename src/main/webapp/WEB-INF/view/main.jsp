@@ -133,25 +133,15 @@ function init() {
 	$('#delEmpBtn').click(() => {
 		if(isVal($('#empId:checked'))) {
 			$('#delEmpModal').modal();
-		} else {
-			alert('사번을 입력하세요.', false);
 		}
 	});
 	
 	$('#delEmpOkBtn').click(() => {
-		let empId = $(':checked').val();
-		
-		$.each(emps, (idx, emp) => {
-			if(emp.empId == empId) {
-				emps.splice(idx, 1);
-				return false;
-			}
-		});
+		$.ajax(`emp/del/\${$('#empId:checked').val()}`)
+			.done(cnt => alert('사원 ' + cnt + '명을 삭제했습니다.', cnt > 0))
+			.fail(err => alert('사원을 삭제하지 못했습니다.', false));
 		
 		$('#delEmpModal').modal('hide');
-		
-		listEmployees();
-		alert('사원을 삭제했습니다.');
 	});
 	
 	$('#empList').on({
