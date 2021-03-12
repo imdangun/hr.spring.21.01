@@ -8,12 +8,6 @@
 		order by emp_id
 	</select>
 	
-	<select id='selectEmployee' resultMap='employeeMap'>
-		select emp_id, emp_name, hire_date
-		from employees
-		where emp_id = #{empId}
-	</select>	
-	
 	<resultMap id='employeeMap' type='employee'>
 		<id     property='empId'    column='emp_id'/>
 		<result property='empName'  column='emp_name'/>		

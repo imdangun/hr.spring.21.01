@@ -16,12 +16,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public List<Employee> selectEmployees() {
 		return empMap.selectEmployees();
-	}
-	
-	@Override
-	public Employee selectEmployee(int empId) {
-		return empMap.selectEmployee(empId);
-	}
+	}	
 	
 	@Override
 	public int insertEmployee(String empName, LocalDate hireDate) {

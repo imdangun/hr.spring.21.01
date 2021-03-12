@@ -16,12 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getEmployees() {
 		return empDao.selectEmployees();
-	}
-	
-	@Override
-	public Employee getEmployee(int empId) {
-		return empDao.selectEmployee(empId);
-	}
+	}	
 	
 	@Override
 	public int addEmployee(String empName, LocalDate hireDate) {

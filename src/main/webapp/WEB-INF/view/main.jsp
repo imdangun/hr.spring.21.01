@@ -165,6 +165,7 @@ function init() {
 
 $(init);
 </script>
+
 <style>
 .jumbotron {
   padding: 1rem; 
@@ -174,7 +175,6 @@ $(init);
 	width: 24.5%;
 }
 </style>
-
 
 <div class='container'>
 	<div class='row'>

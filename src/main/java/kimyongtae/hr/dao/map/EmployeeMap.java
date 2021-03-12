@@ -10,8 +10,6 @@ import kimyongtae.hr.domain.Employee;
 public interface EmployeeMap {
 	List<Employee> selectEmployees();
 	
-	Employee selectEmployee(int empId);
-	
 	int insertEmployee(
 			@Param("empName")String empName, @Param("hireDate")LocalDate hireDate);
 	

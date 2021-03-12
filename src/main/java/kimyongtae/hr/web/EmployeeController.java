@@ -27,11 +27,6 @@ public class EmployeeController {
 		return empService.getEmployees();
 	}
 	
-	@GetMapping("/get/{empId}")
-	public Employee getEmployee(@PathVariable int empId) {
-		return empService.getEmployee(empId);
-	}
-	
 	@PostMapping("/add")
 	public int addEmployee(String empName, 
 			@DateTimeFormat(pattern="yyyy-MM-dd") LocalDate hireDate) {
