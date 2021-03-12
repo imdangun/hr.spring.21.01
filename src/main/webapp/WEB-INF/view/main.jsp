@@ -106,8 +106,10 @@ function init() {
 				url: 'emp/add',
 				method: 'post',
 				data: emp
-			}).done(cnt => alert('사원 ' + cnt + '명을 추가했습니다.', cnt > 0))
-			.fail(err => alert('사원을 추가하지 못했습니다.', false));		
+			}).done(cnt => {
+				alert('사원 ' + cnt + '명을 추가했습니다.', cnt > 0);
+				$('#listEmpBtn').click();
+			}).fail(err => alert('사원을 추가하지 못했습니다.', false));		
 		} 
 	});
 	
@@ -124,8 +126,10 @@ function init() {
 					hireDate: $('#hireDate').val()
 				}),
 				contentType: 'application/json'
-			}).done(cnt => alert('사원 ' + cnt + '명을 수정했습니다.', cnt > 0))
-			.fail(err => alert('사원을 수정하지 못했습니다.', false));
+			}).done(cnt => {
+				alert('사원 ' + cnt + '명을 수정했습니다.', cnt > 0);
+				$('#listEmpBtn').click();
+			}).fail(err => alert('사원을 수정하지 못했습니다.', false));
 		}
 	});
 	
@@ -137,9 +141,14 @@ function init() {
 	});
 	
 	$('#delEmpOkBtn').click(() => {
-		$.ajax(`emp/del/\${$('#empId:checked').val()}`)
-			.done(cnt => alert('사원 ' + cnt + '명을 삭제했습니다.', cnt > 0))
-			.fail(err => alert('사원을 삭제하지 못했습니다.', false));
+		$.ajax({
+			url: `emp/del/\${$('#empId:checked').val()}`,
+			method: 'delete'
+		}).done(cnt => {
+				alert('사원 ' + cnt + '명을 삭제했습니다.', cnt > 0);
+				$('#listEmpBtn').click();
+			}			
+		).fail(err => alert('사원을 삭제하지 못했습니다.', false));
 		
 		$('#delEmpModal').modal('hide');
 	});
